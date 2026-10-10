@@ -1,0 +1,10 @@
+checkpoints/
+common/
+.runtime/
+eval_result/
+logs/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.tar
+*.zip
