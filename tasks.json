@@ -1,0 +1,12 @@
+{
+  "table_rearrangement":{"kind":"official_smolvla","checkpoint":"checkpoints/table_rearrangement_82pct_official","success_rate":82,"score_source":"official_public_100"},
+  "click_bell":{"kind":"official_smolvla","checkpoint":"checkpoints/click_bell_35pct_official","success_rate":35,"score_source":"official_public_100"},
+  "water_pouring":{"kind":"official_smolvla","checkpoint":"checkpoints/water_pouring_65pct_official","success_rate":65,"score_source":"official_public_100"},
+  "handle_basket":{"kind":"predicted_mask","checkpoint":"checkpoints/handle_basket_54pct_ours/policy","vision":"checkpoints/handle_basket_54pct_ours/predictor","success_rate":54,"score_source":"team_historical_public_100"},
+  "items_handover":{"kind":"official_smolvla","checkpoint":"checkpoints/items_handover_30pct_official","success_rate":30,"score_source":"official_public_100"},
+  "drawer_open_place":{"kind":"predicted_mask","checkpoint":"checkpoints/drawer_open_place_65pct_ours/policy","vision":"checkpoints/drawer_open_place_65pct_ours/predictor","success_rate":65,"score_source":"team_historical_public_100"},
+  "mixer_operating":{"kind":"official_smolvla","checkpoint":"checkpoints/mixer_operating_58pct_official","success_rate":58,"score_source":"official_public_100"},
+  "item_assembly":{"kind":"official_smolvla","checkpoint":"checkpoints/item_assembly_24pct_official","success_rate":24,"score_source":"official_public_100"},
+  "manipulate_pipette":{"kind":"pipette9","checkpoint":"checkpoints/manipulate_pipette_49pct_ours/pretrained_model","vision":"checkpoints/manipulate_pipette_49pct_ours/vision","success_rate":49,"score_source":"team_public_100","instruction":"Use the pipette on the table to transfer liquid from one beaker to another"},
+  "sample_loading":{"kind":"official_smolvla","checkpoint":"checkpoints/sample_loading_6pct_official","success_rate":6,"score_source":"official_public_100"}
+}
