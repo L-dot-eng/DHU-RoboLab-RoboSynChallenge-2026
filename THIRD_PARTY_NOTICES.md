@@ -9,6 +9,8 @@
 
 Submission compatibility change to vendored LeRobot: `configs/policies.py` accepts the nullable `pretrained_revision` metadata present in official checkpoints. This does not change tensor weights, inference settings, or action normalization.
 
+- ItemsHandover update 2026-10-11: teammate PredMask_ItemsHandover_50K policy and DeepLabV3-ResNet50 TorchScript RGB predictor, unchanged original weights. Teammate-provided README states 1000 official-simulator successful demonstrations and 50000 policy training steps. Our original-code cloud reproduction is 10/30, separate from the teammate's historical 34/100. Original external10/internal50 execution is retained. Only five official task routes remain selected; old official checkpoints are retained as fallback. TorchVision DeepLabV3/ResNet50 source: https://github.com/pytorch/vision (BSD-3-Clause); the supplied artifact does not establish blanket redistribution rights for every upstream pretrained weight. Preserve upstream notices and competition-use attribution.
+
 Official submission rules: https://robosyn-bench.net/#/faq . This package does not constitute organizer approval, submission acceptance, or a guarantee of private evaluation performance.
 # ClickBell predictor initialization verification
 

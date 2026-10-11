@@ -69,6 +69,9 @@ def get_model(usr_args):
         worker_args['smolvla_python']=usr_args['smolvla_python']
     if spec['kind']=='official_smolvla':
         return RawModel(worker_args)
+    if spec['kind']=='handover_original_predmask':
+        from .handover.adapter import Model
+        return Model(spec['vision'],worker_args)
     if spec['kind']=='clickbell_rgb_mask':
         from .clickbell.adapter import Model
         return Model(spec['checkpoint'],spec['vision'],worker_args)
@@ -86,6 +89,9 @@ def get_model(usr_args):
 
 
 def eval(env, model, obs):
+    from .handover.adapter import Model as HandoverModel
+    if isinstance(model,HandoverModel):
+        return model.eval(env,obs)
     compute_seconds=0.
     info={}
     truncated=False
