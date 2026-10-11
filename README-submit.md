@@ -1,8 +1,8 @@
 # RoboSynChallenge 十任务交接说明
 
-本包将十个任务统一接入 SmolVLA：抽屉、提篮、移液器使用本队选定版本，其余七项使用官方 SmolVLA 权重。没有混入 ACT、Diffusion Policy、π0 或其他策略。任务与文件路径以根目录 `tasks.json` 为准。
+本包将十个任务统一接入 SmolVLA：按铃、抽屉、提篮、移液器使用本队选定版本，其余六项使用官方 SmolVLA 权重。没有混入 ACT、Diffusion Policy、π0 或其他学习策略。任务与文件路径以根目录 `tasks.json` 为准。2026-10-11按铃增量替换为RGB预测mask＋有限补按版，独立公开环境实测84/100；其余九项不变。72%纯模型版本另存为回退包。
 
-这是给队友恢复、验证和整理正式提交材料的交接 ZIP，不是官网直接上传 ZIP 的提交格式。已完成十任务在现有云端的离线加载、50×14动作输出、模型重置及共13个完整回合检查；云端单元测试55项通过、3项跳过，本机41项通过、17项跳过，详情与跳过原因见 `validation/`。这些是部署检查，不是十任务成功率复现；标准官方环境仍需队友复验。
+这是给队友恢复、验证和整理正式提交材料的交接 ZIP，不是官网直接上传 ZIP 的提交格式。2026-10-10原始包完成过十任务离线加载、50×14动作输出、模型重置及共13个完整回合检查；当时云端单元测试55项通过、3项跳过，本机41项通过、17项跳过。该历史检查中的按铃为旧官方权重，不能作为本次更新的部署证据；72%回退版与最终84%版记录分别单列于 `validation/clickbell72/`、`validation/clickbell84/`。这些部署检查不等于十任务成功率复现；标准官方环境仍需复验。
 
 ## 十个任务与成绩来源
 
@@ -11,7 +11,7 @@
 | 中文任务 | 官方任务名 | 权重文件夹 | 历史成功率及来源 |
 | --- | --- | --- | --- |
 | 桌面物品重排 | `table_rearrangement` | `checkpoints/table_rearrangement_82pct_official` | 官方公开环境报告，82/100 |
-| 按铃 | `click_bell` | `checkpoints/click_bell_35pct_official` | 官方公开环境报告，35/100 |
+| 按铃 | `click_bell` | `checkpoints/click_bell_72pct_ours` | 同一RGB预测器＋旧50K策略，新增有限补按控制器，2026-10-11独立公开随机环境84/100；路径72为基础权重标识 |
 | 倒水 | `water_pouring` | `checkpoints/water_pouring_65pct_official` | 官方公开环境报告，65/100 |
 | 提篮 | `handle_basket` | `checkpoints/handle_basket_54pct_ours` | 本队 Contact-v2 历史公开环境实测，54/100 |
 | 双臂物品交接 | `items_handover` | `checkpoints/items_handover_30pct_official` | 官方公开环境报告，30/100 |
@@ -21,7 +21,7 @@
 | 移液器操作 | `manipulate_pipette` | `checkpoints/manipulate_pipette_49pct_ours` | 本队固定 9 mm 版本历史公开环境实测，49/100 |
 | 样本加载 | `sample_loading` | `checkpoints/sample_loading_6pct_official` | 官方原始 RGB 权重，官方公开环境报告 6/100 |
 
-抽屉和提篮文件夹包含 `policy/` 与 `predictor/`；移液器包含 `pretrained_model/` 与 `vision/`，必须成组保留。七个官方任务直接使用对应权重文件夹。
+按铃、抽屉和提篮文件夹包含 `policy/` 与 `predictor/`；移液器包含 `pretrained_model/` 与 `vision/`，必须成组保留。其余六个官方任务直接使用对应权重文件夹。旧官方按铃目录保留作回退，但不再由默认路由选用。
 
 成绩口径必须一起交接：
 
@@ -29,7 +29,7 @@
 - 抽屉 65/100、提篮 54/100、移液器 49/100 只说明各自历史公开环境结果，不保证隐藏场景或正式比赛成绩。
 - SampleLoading 使用官方版本；6/100 是官方报告，不是本队新测成绩。一次连通或完整回合检查不能复现这个统计量。
 - 官方历史协议与本包均使用 50 步预测、50 步动作队列；本包每次外层 `eval` 调用最多推进 50 个底层动作，历史适配器分批返回外层，调用次数及终止检查时点存在差别。队列长度一致不代表完整评测协议完全一致，不能承诺复现历史成绩。
-- 旧按铃 71/100 方案依赖仿真器真值实例 mask，缺少等价 RGB 预测器，不可直接用于本包的 RGB 提交流程，因此选用官方 SmolVLA 35/100 版本。不能把 71% 写成本包成绩。
+- 旧按铃71/100方案依赖仿真器真值mask；本次仅复用其50K策略权重，新增SegFormer-B0从RGB预测背景/机器人/铃，再映射成一致红灰输入。共采集60个仿真场景、1800张配对图；按场景划分54场景1620张训练、6场景180张验证，预测器训练3000步。真值mask仅作训练监督，部署不读取它。纯模型版本72/100见 `validation/clickbell72/`；最终版前100步保持基础策略，之后通过机器人运动学作最多五次局部補按，独立100回合84成功/16失败，见 `validation/clickbell84/`。两次不是严格同输入配对测评，不能把12个百分点差值全部归因于补按，也不能当作隐藏测评成绩。补按只用RGB预测、机器人自身状态/运动学和动作历史，不读取铃位置、成功标志或按压深度；其接触参考是最低TCP启发式而非准确物体三维定位。
 - 未改变的官方基线是否符合当届贡献要求、是否计入比赛成绩，由组委会按规则判断；本包不作承诺。
 
 ## 环境与安装
@@ -43,7 +43,7 @@
 - `requirements-policy.txt`：策略侧依赖约束，包含 PyTorch、transformers、NumPy 等；不替代仿真器、显卡驱动和系统库的安装。
 - `vendor/lerobot/`：配套 LeRobot 源码，运行入口优先加载此版本。
 - `common/SmolVLM2-500M-Video-Instruct/`：共享本地 VLM、分词器与处理器文件。
-- `checkpoints/`：十任务策略权重、归一化处理器及三项自训任务所需视觉预测器。
+- `checkpoints/`：十任务策略权重、归一化处理器及四项本队任务所需视觉预测器。
 
 在已激活的 Python 3.11 仿真环境中，从解压后的包根目录安装策略依赖：
 
@@ -126,6 +126,6 @@ bash eval.sh sample_loading random 0 --max_episodes 100 --seed 0
 
 以下文字可用于仓库说明，并按最终提交表要求调整：
 
-> 本方案统一采用 SmolVLA 作为十任务策略骨干。抽屉放物和提篮使用本队在官方仿真环境中采集的示范与补充数据训练；移液器使用官方 1,000 条轨迹，按 900 条训练、100 条验证划分，固定采用本队 9 mm 版本。三项任务部署时使用 RGB 图像和机器人自身状态，视觉增强由学习型预测器生成，不输入仿真器真值实例 mask 或物体位姿。其余七项任务直接使用官方发布的 SmolVLA 权重，包括 SampleLoading 与按铃，并明确标注为官方基线。本队的整合工作包括任务路由、离线权重组织、部署接口适配和运行验证。历史成绩与本次整合验证分别记录，不合并为一次统一评测结果。
+> 本方案统一采用 SmolVLA 作为十任务策略骨干。按铃复用本队50K红灰策略，并新增SegFormer-B0预测器；共采集60个场景1800张RGB/标签配对图，按54场景1620张训练、6场景180张验证划分，纯模型公开随机环境72/100。在前100动作之后增加有限局部补按，最终候选独立100回合84次成功，非严格配对因果提升。补按使用机器人自身运动学和动作历史，不读取仿真真值mask或铃位姿，不是队友提供的CAP控制。抽屉放物和提篮使用本队在官方仿真环境中采集的示范与补充数据训练；移液器使用官方1000条轨迹，按900条训练、100条验证划分，采用本队9mm版本。这四项任务部署时使用RGB图像和机器人自身状态，视觉增强由学习型预测器生成，不输入仿真器真值实例mask或物体位姿。其余六项任务直接使用官方发布的SmolVLA权重，包括SampleLoading，并明确标注为官方基线。各任务成绩与整合验证分别记录，不合并为一次统一评测结果。
 
 基础代码与任务环境来自 [EDEM-AI/RoboSynChallenge](https://github.com/EDEM-AI/RoboSynChallenge) 和 [EmbodiChain](https://github.com/DexForce/EmbodiChain)；策略基础来自 [LeRobot](https://github.com/huggingface/lerobot) 与 [SmolVLM2-500M-Video-Instruct](https://huggingface.co/HuggingFaceTB/SmolVLM2-500M-Video-Instruct)。移液器数据来自官方公开数据，入口见 [RoboSynChallenge Data](https://edem-ai.github.io/robosynchallenge.github.io/#/data)；抽屉和提篮数据来自本队历史仿真采集。本包不含完整训练数据，用于推理交接；官方模型的训练数据与方法以发布方说明为准。

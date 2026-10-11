@@ -69,6 +69,12 @@ def get_model(usr_args):
         worker_args['smolvla_python']=usr_args['smolvla_python']
     if spec['kind']=='official_smolvla':
         return RawModel(worker_args)
+    if spec['kind']=='clickbell_rgb_mask':
+        from .clickbell.adapter import Model
+        return Model(spec['checkpoint'],spec['vision'],worker_args)
+    if spec['kind']=='clickbell_rgb_mask_recovery':
+        from .clickbell.recovery import Model
+        return Model(spec['checkpoint'],spec['vision'],worker_args)
     if spec['kind']=='pipette9':
         from .pipette.adapter import Model
         return Model(spec['checkpoint'],spec['vision'],worker_args,spec['instruction'])

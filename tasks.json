@@ -1,6 +1,6 @@
 {
   "table_rearrangement":{"kind":"official_smolvla","checkpoint":"checkpoints/table_rearrangement_82pct_official","success_rate":82,"score_source":"official_public_100"},
-  "click_bell":{"kind":"official_smolvla","checkpoint":"checkpoints/click_bell_35pct_official","success_rate":35,"score_source":"official_public_100"},
+  "click_bell":{"kind":"clickbell_rgb_mask_recovery","checkpoint":"checkpoints/click_bell_72pct_ours/policy","vision":"checkpoints/click_bell_72pct_ours/predictor","success_rate":84,"score_source":"team_public_recovery_100_timeout_first_20261011"},
   "water_pouring":{"kind":"official_smolvla","checkpoint":"checkpoints/water_pouring_65pct_official","success_rate":65,"score_source":"official_public_100"},
   "handle_basket":{"kind":"predicted_mask","checkpoint":"checkpoints/handle_basket_54pct_ours/policy","vision":"checkpoints/handle_basket_54pct_ours/predictor","success_rate":54,"score_source":"team_historical_public_100"},
   "items_handover":{"kind":"official_smolvla","checkpoint":"checkpoints/items_handover_30pct_official","success_rate":30,"score_source":"official_public_100"},

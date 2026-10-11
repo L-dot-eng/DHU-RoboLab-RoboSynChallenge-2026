@@ -1,0 +1,360 @@
+{
+  "bundle_root": "/root/gpufree-data/project-006-clickbell-submit85",
+  "router": "/root/gpufree-data/project-006-clickbell-submit85/policy/robosyn_team/deploy_policy.py",
+  "model_source": "/root/gpufree-data/project-006-clickbell-submit85/policy/robosyn_team/clickbell/recovery.py",
+  "recovery_sha256": "c76a8843474f962fb3f4d03020594122a542e5948f1e37917cd7241bceee5ca1",
+  "protocol": "official feasibility/reset; unified get_model/eval/reset_model; unchanged 361 horizon",
+  "required_recovery_episodes": 2,
+  "max_episodes": 8,
+  "passed": true,
+  "episodes": [
+    {
+      "seed": 9200135,
+      "feasible": true,
+      "feasibility": {
+        "feasible": true,
+        "reason": "expert_planning_succeeded",
+        "expert_plan_steps": 74
+      },
+      "reset_clear": true,
+      "success": true,
+      "steps": 64,
+      "controller_steps": 64,
+      "terminated": false,
+      "timeout": false,
+      "eval_calls": 2,
+      "entered_recovery": false,
+      "recovery_events": [],
+      "seconds": 4.155309025198221,
+      "actions_file": "/root/gpufree-data/project-006-clickbell-submit85-work/unified-smoke-actions-00-seed-9200135.npz"
+    },
+    {
+      "seed": 9200010,
+      "feasible": true,
+      "feasibility": {
+        "feasible": true,
+        "reason": "expert_planning_succeeded",
+        "expert_plan_steps": 74
+      },
+      "reset_clear": true,
+      "success": true,
+      "steps": 127,
+      "controller_steps": 127,
+      "terminated": false,
+      "timeout": false,
+      "eval_calls": 3,
+      "entered_recovery": true,
+      "recovery_events": [
+        {
+          "step": 100,
+          "kind": "visibility",
+          "bell_pixels": [
+            1164,
+            0,
+            19827
+          ]
+        },
+        {
+          "step": 100,
+          "kind": "selected",
+          "history_index": 55,
+          "measured_qpos": [
+            0.8592405319213867,
+            1.9832966327667236,
+            -1.2625967264175415,
+            -0.0013706021709367633,
+            0.5791904926300049,
+            0.00039564233156852424
+          ],
+          "pose": [
+            [
+              0.6110172271728516,
+              0.7576342225074768,
+              0.22945228219032288,
+              0.5241936445236206
+            ],
+            [
+              0.7097920775413513,
+              -0.6526786684989929,
+              0.2649638056755066,
+              0.037449806928634644
+            ],
+            [
+              0.3505042493343353,
+              0.0009659851202741265,
+              -0.9365606904029846,
+              0.8513607382774353
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "step": 100,
+          "kind": "attempt",
+          "attempt": 1,
+          "offset": [
+            0.0,
+            0.0
+          ],
+          "accepted": true,
+          "reason": null
+        }
+      ],
+      "seconds": 4.128894140943885,
+      "actions_file": "/root/gpufree-data/project-006-clickbell-submit85-work/unified-smoke-actions-01-seed-9200010.npz"
+    },
+    {
+      "seed": 9200097,
+      "feasible": true,
+      "feasibility": {
+        "feasible": true,
+        "reason": "expert_planning_succeeded",
+        "expert_plan_steps": 74
+      },
+      "reset_clear": true,
+      "success": true,
+      "steps": 56,
+      "controller_steps": 56,
+      "terminated": false,
+      "timeout": false,
+      "eval_calls": 2,
+      "entered_recovery": false,
+      "recovery_events": [],
+      "seconds": 2.136209422722459,
+      "actions_file": "/root/gpufree-data/project-006-clickbell-submit85-work/unified-smoke-actions-02-seed-9200097.npz"
+    },
+    {
+      "seed": 9200145,
+      "feasible": true,
+      "feasibility": {
+        "feasible": true,
+        "reason": "expert_planning_succeeded",
+        "expert_plan_steps": 74
+      },
+      "reset_clear": true,
+      "success": true,
+      "steps": 67,
+      "controller_steps": 67,
+      "terminated": false,
+      "timeout": false,
+      "eval_calls": 2,
+      "entered_recovery": false,
+      "recovery_events": [],
+      "seconds": 2.4209922943264246,
+      "actions_file": "/root/gpufree-data/project-006-clickbell-submit85-work/unified-smoke-actions-03-seed-9200145.npz"
+    },
+    {
+      "seed": 9200012,
+      "feasible": true,
+      "feasibility": {
+        "feasible": true,
+        "reason": "expert_planning_succeeded",
+        "expert_plan_steps": 74
+      },
+      "reset_clear": true,
+      "success": true,
+      "steps": 54,
+      "controller_steps": 54,
+      "terminated": false,
+      "timeout": false,
+      "eval_calls": 2,
+      "entered_recovery": false,
+      "recovery_events": [],
+      "seconds": 2.101306837052107,
+      "actions_file": "/root/gpufree-data/project-006-clickbell-submit85-work/unified-smoke-actions-04-seed-9200012.npz"
+    },
+    {
+      "seed": 9200011,
+      "feasible": true,
+      "feasibility": {
+        "feasible": true,
+        "reason": "expert_planning_succeeded",
+        "expert_plan_steps": 74
+      },
+      "reset_clear": true,
+      "success": false,
+      "steps": 361,
+      "controller_steps": 361,
+      "terminated": false,
+      "timeout": true,
+      "eval_calls": 8,
+      "entered_recovery": true,
+      "recovery_events": [
+        {
+          "step": 100,
+          "kind": "visibility",
+          "bell_pixels": [
+            2123,
+            0,
+            13599
+          ]
+        },
+        {
+          "step": 100,
+          "kind": "selected",
+          "history_index": 60,
+          "measured_qpos": [
+            0.16139142215251923,
+            2.2440903186798096,
+            -1.7400761842727661,
+            0.0003013269742950797,
+            0.8026261329650879,
+            -0.0009460067376494408
+          ],
+          "pose": [
+            [
+              0.9265854954719543,
+              0.16144782304763794,
+              0.3396673798561096,
+              0.7511733770370483
+            ],
+            [
+              0.15160128474235535,
+              -0.9868811368942261,
+              0.05551991984248161,
+              -0.21558618545532227
+            ],
+            [
+              0.34417498111724854,
+              5.00637834193185e-05,
+              -0.9389055967330933,
+              0.8535769581794739
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "step": 100,
+          "kind": "attempt",
+          "attempt": 1,
+          "offset": [
+            0.0,
+            0.0
+          ],
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "step": 149,
+          "kind": "attempt_complete",
+          "attempt": 1
+        },
+        {
+          "step": 150,
+          "kind": "visibility",
+          "bell_pixels": [
+            2038,
+            0,
+            5082
+          ]
+        },
+        {
+          "step": 150,
+          "kind": "attempt",
+          "attempt": 2,
+          "offset": [
+            0.004,
+            0.0
+          ],
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "step": 199,
+          "kind": "attempt_complete",
+          "attempt": 2
+        },
+        {
+          "step": 200,
+          "kind": "visibility",
+          "bell_pixels": [
+            2028,
+            0,
+            3528
+          ]
+        },
+        {
+          "step": 200,
+          "kind": "attempt",
+          "attempt": 3,
+          "offset": [
+            -0.004,
+            0.0
+          ],
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "step": 249,
+          "kind": "attempt_complete",
+          "attempt": 3
+        },
+        {
+          "step": 250,
+          "kind": "visibility",
+          "bell_pixels": [
+            2015,
+            0,
+            7157
+          ]
+        },
+        {
+          "step": 250,
+          "kind": "attempt",
+          "attempt": 4,
+          "offset": [
+            0.0,
+            0.004
+          ],
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "step": 299,
+          "kind": "attempt_complete",
+          "attempt": 4
+        },
+        {
+          "step": 300,
+          "kind": "visibility",
+          "bell_pixels": [
+            2031,
+            0,
+            5110
+          ]
+        },
+        {
+          "step": 300,
+          "kind": "attempt",
+          "attempt": 5,
+          "offset": [
+            0.0,
+            -0.004
+          ],
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "step": 349,
+          "kind": "attempt_complete",
+          "attempt": 5
+        }
+      ],
+      "seconds": 10.366727700456977,
+      "actions_file": "/root/gpufree-data/project-006-clickbell-submit85-work/unified-smoke-actions-05-seed-9200011.npz"
+    }
+  ],
+  "recovery_episodes": 2,
+  "successful_recovery_episodes": 1,
+  "final_reset_clear": true
+}

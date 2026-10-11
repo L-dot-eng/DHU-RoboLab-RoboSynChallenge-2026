@@ -1,0 +1,22 @@
+{
+  "raw_source": "heldout100.json",
+  "raw_sha256": "dd0f6c9de7e9b43d45d7fdd1bad37bd658dcfeb4054a1c4634649a0ee6029b0a",
+  "completed": 100,
+  "unique_seeds": 100,
+  "raw_predicate_successes": 85,
+  "official_successes": 84,
+  "official_failures": 16,
+  "last_step_conflict_seed": 9300041,
+  "conflicts": [
+    {
+      "seed": 9300041,
+      "steps": 361,
+      "raw_success": true,
+      "timeout": true,
+      "official_success": false
+    }
+  ],
+  "rule": "Official scripts/eval_policy.py line 819 checks not is_truncated before accepting task success; timeout takes precedence.",
+  "controls_modified": false,
+  "raw_records_modified": false
+}
